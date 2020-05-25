@@ -486,6 +486,11 @@ activate_screen (rp_screen *s)
                    _net_supported, XA_ATOM, 32, PropModeReplace,
                    (unsigned char*)&_net_wm_pid, 1);
 
+  /* Support _net_active_window */
+  XChangeProperty (dpy, RootWindow (dpy, s->screen_num),
+                   _net_supported, XA_ATOM, 32, PropModeAppend,
+                   (unsigned char*)&_net_active_window, 1);
+
   /* set window manager name */
   XChangeProperty (dpy, RootWindow (dpy, s->screen_num),
                    _net_wm_name, xa_utf8_string, 8, PropModeReplace,
